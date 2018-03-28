@@ -1,6 +1,7 @@
 var app = new Vue({
     el: "#app",
     data: {
+        activeAccordionIndex: 0,
         accordionItem: [{
             title: "语音技术",
             items: [{
@@ -171,5 +172,15 @@ var app = new Vue({
         }]
     },
     mounted: function () { },
-    methods: {}
+    methods: {
+        getAccordionContentStyle: function (t) {
+            return {
+                height: this.activeAccordionIndex === t ? 9.3333 * this.accordionItem[t].items.length + "rem" : 0
+            }
+        },
+        handleCollapse: function (t) {
+            t !== this.activeAccordionIndex ? this.activeAccordionIndex = t : this.activeAccordionIndex = -
+                1
+        }
+    }
 });

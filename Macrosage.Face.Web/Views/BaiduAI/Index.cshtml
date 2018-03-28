@@ -1,17 +1,17 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "百度AI体验中心";
     Layout = "~/Views/Shared/_LayoutMobile.cshtml";
 }
 
 <div class="ai-section p-t-md p-b-md" id="app">
     <div class="ai-accordion">
-        <div class="ai-accordion-item" v-for="(k,index) in accordionItem">
-            <div class="ai-accordion-title">
+        <div class="ai-accordion-item " v-for="(k,index) in accordionItem">
+            <div :class="activeAccordionIndex==index?'ai-accordion-title ai-accordion-title-active':'ai-accordion-title'" @@click="handleCollapse(index)">
                 {{k.title}}
                 <div class="ai-accordion-arrow"></div>
             </div>
-            <div class="ai-accordion-content" style="height:0;">
+            <div :class="activeAccordionIndex==index?'ai-accordion-content ai-accordion-content-active':'ai-accordion-content'" :style="getAccordionContentStyle(index)">
                 <a :href="item.href" class="ai-tech-item" v-for="item in k.items">
                     <img :src="'/Static/img/'+item.icon" class="ai-tech-item-icon">
                     <div class="ai-tech-item-text">
@@ -24,6 +24,5 @@
     </div>
 </div>
 @section PageJS{
-    <script src="~/Static/js/vendor.js"></script>
     <script src="~/Static/js/home.js"></script>
 }

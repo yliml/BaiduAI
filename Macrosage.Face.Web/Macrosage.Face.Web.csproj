@@ -223,6 +223,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Static\css\home.css" />
     <Content Include="Static\css\vendor.css" />
+    <Content Include="Static\js\home - 副本.js" />
     <Content Include="Static\js\home.js" />
     <Content Include="Static\js\vendor.js" />
     <Content Include="Static\js\vue.js" />
