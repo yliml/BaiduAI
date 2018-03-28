@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Static/css/vendor.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/Static/css/home.css" rel="stylesheet" asp-append-version="true" />
+    <script src="~/Static/js/vue.js"></script>
+    @RenderSection("PageCSS", false)
+</head>
+<body>
+    <div  data-server-rendered="true" class="ai-app">
+        <div class="ai-main">
+            @RenderBody()
+        </div>
+    </div>
+        @RenderSection("PageJS", false)
+</body>
+</html>
