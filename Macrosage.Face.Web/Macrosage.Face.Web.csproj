@@ -179,6 +179,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BaiduAIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\tech\SpeechController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -241,6 +242,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\BaiduAI\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutMobile.cshtml" />
+    <Content Include="Views\Speech\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -264,6 +266,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Macrosage.BaiduAI\Macrosage.BaiduAI.csproj">
+      <Project>{6e629afa-a4ab-4657-bbc0-0f80ff2f52c8}</Project>
+      <Name>Macrosage.BaiduAI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Macrosage.Face\Macrosage.Face.csproj">
       <Project>{5a337323-fec2-4b9c-a9ba-fb9fada185fa}</Project>
       <Name>Macrosage.Face</Name>

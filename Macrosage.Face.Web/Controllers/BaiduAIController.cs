@@ -8,10 +8,14 @@ namespace Macrosage.Face.Web.Controllers
 {
     public class BaiduAIController : Controller
     {
-        // GET: BaiduAI
+        /// <summary>
+        /// 菜单首页
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View();
         }
+
     }
 }
