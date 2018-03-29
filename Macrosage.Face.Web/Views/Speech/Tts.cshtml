@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewBag.Title = "语音合成";
+    Layout = "~/Views/Shared/_LayoutWeUI.cshtml";
+}
+
+<div class="page js_show" id="app" v-cloak >
+    <div class="page__hd">
+        <h1 class="page__title">语音合成</h1>
+        <p class="page__desc">基于业界领先的深度神经网络技术，提供流畅自然的语音合成服务，让您的应用开口说话</p>
+    </div>
+    <div class="page__bd">
+        <div class="weui-cells__title">文本域</div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder="请在这里输入声音合成内容" rows="3" v-model="tts.tex"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="weui-cells__title">声音选择</div>
+        <div class="weui-cells weui-cells_radio">
+            <label class="weui-cell weui-check__label" v-for="k in pers" :for="'x'+k.value">
+                <div class="weui-cell__bd">
+                    <p>{{k.text}}</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <input type="radio" class="weui-check" name="radioper" :value="k.value" :id="'x'+k.value" v-model="tts.per" />
+                    <span class="weui-icon-checked"></span>
+                </div>
+            </label>
+        </div>
+        <div class="weui-cells__title">语速选择</div>
+        <div class="weui-cells">
+            <div class="weui-cell weui-cell_select weui-cell_select-after">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label">语速</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select" v-model="tts.spd" name="selectspd">
+                        <option :value="k" v-for="k in tts.spdMax">{{k}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_select weui-cell_select-after">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label">音调</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select" v-model="tts.pit" name="selectpit">
+                        <option :value="k" v-for="k in tts.pitMax">{{k}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_select weui-cell_select-after">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label">音量</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select" v-model="tts.vol" name="selectvol">
+                        <option :value="k" v-for="k in tts.volMax">{{k}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="weui-btn-area">
+            <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips" @@click="SpeechTts">确定</a>
+        </div>
+        <div class="weui-btn-area" v-if="filename.length>0">
+            <a class="weui-btn weui-btn_default" href="javascript:" @@click="initplay">播放</a>
+        </div>
+    </div>
+    <audio :src="filename" loop id="audio"></audio>
+</div>
+@section PageJS{
+        <script type="text/javascript">
+    var app = new Vue({
+        el: "#app",
+        data: {
+            filename: "",
+            pers: [
+                { text: "女声", value: 0 },
+                { text: "男声", value: 1 },
+                { text: "度逍遥", value: 3 },
+                { text: "度丫丫", value: 4 },
+            ],
+            tts: {
+                tex: "",
+                spd: 5,
+                spdMax: 9,
+                pit: 5,
+                pitMax: 9,
+                vol: 5,
+                volMax: 15,
+                per: 0
+            }
+        },
+        mounted: function () {
+        },
+        methods: {
+            initplay() {
+                var oAudio = document.getElementById("audio");
+                if (oAudio.paused) {
+                    oAudio.play();
+                }
+                else {
+                    //oAudio.pause();
+                }
+            },
+            SpeechTts() {
+                var that = this;
+                var url = '@Url.Action("tts", "speech")';
+                $.ajax({
+                    url: url,
+                    dataType: "json",
+                    type: "post",
+                    data: { res:this.tts },
+                    success: function (result) {
+                        console.log(result);
+                        if (result && result.IsSuccess) {
+                            that.filename = result.Result;
+                        }
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
+            }
+        }
+    });
+        </script>
+    }

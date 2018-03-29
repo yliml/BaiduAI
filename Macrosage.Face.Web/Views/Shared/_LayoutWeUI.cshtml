@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Static/css/weui.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/Static/css/example.css" rel="stylesheet" asp-append-version="true" />
+    @RenderSection("PageCSS", false)
+</head>
+<body>
+    <div class="container" id="container">
+        @RenderBody()
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Static/js/jweixin-1.2.0.js"></script>
+    <script src="~/Static/js/vue.js"></script>
+    @RenderSection("PageJS", false)
+</body>
+</html>

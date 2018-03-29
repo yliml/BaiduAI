@@ -8,17 +8,17 @@ var app = new Vue({
                 icon: "speech-asr.png",
                 title: "语音识别",
                 intro: "高精度的语音识别服务，融合百度领先的自然语言处理技术，支持多场景智能语音交互",
-                href: "/tech/speech"
+                href: "/speech"
             }, {
                 icon: "speech-tts.png",
                 title: "语音合成",
                 intro: "基于业界领先的深度神经网络技术，提供流畅自然的语音合成服务，让您的应用开口说话",
-                href: "/tech/speech/tts"
+                href: "/speech/tts"
             }, {
                 icon: "speech-wake.png",
                 title: "语音唤醒",
                 intro: "支持特定语音指令唤醒，唤醒的同时执行指令操作，轻量级，低功耗，可自定义",
-                href: "/tech/speech/wake"
+                href: "/speech/wake"
             }]
         }, {
             title: "视觉技术",
