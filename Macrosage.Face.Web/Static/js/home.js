@@ -26,27 +26,27 @@ var app = new Vue({
                 icon: "image-word.png",
                 title: "文字识别",
                 intro: "提供多种场景下精准的图像文字识别技术服务，提升输入效率，优化用户体验",
-                href: "/tech/ocr"
+                href: "/ocr"
             }, {
                 icon: "image-face.png",
                 title: "人脸识别",
                 intro: "提供快速准确的人脸检测、关键点定位、人脸1：1比对、人脸1：N识别、活体检测等能力",
-                href: "/tech/face"
+                href: "/face"
             }, {
                 icon: "image-auditing.png",
                 title: "图像审核",
                 intro: "识别图片中的涉黄、涉暴涉恐、政治敏感、微商广告、恶心等内容，节省审核人力",
-                href: "/tech/imagecensoring"
+                href: "/imagecensoring"
             }, {
                 icon: "image-recognition.png",
                 title: "图像识别",
                 intro: "基于深度学习及大规模图像训练，准确识别图片中的物体类别、位置、置信度等综合信息",
-                href: "/tech/imagerecognition"
+                href: "/imagerecognition"
             }, {
                 icon: "image-search.png",
                 title: "图像搜索",
                 intro: "以图搜图，在指定图库中搜索出相同或相似的图片",
-                href: "/tech/imagesearch"
+                href: "/imagesearch"
             }]
         }, {
             title: "视频技术",
@@ -54,22 +54,22 @@ var app = new Vue({
                 icon: "video-vca.png",
                 title: "视频内容分析",
                 intro: "对视频进行语音、文字、人脸、物体、场景多维度分析，输出视频泛标签",
-                href: "/tech/video/vca"
+                href: "/video/vca"
             }, {
                     icon: "video-vcs.png",
                 title: "视频封面选取",
                 intro: "智能选取静态或动态画面作为视频封面",
-                href: "/tech/video/vcs"
+                href: "/video/vcs"
             }, {
                     icon: "video-vcc.png",
                 title: "视频比对检索",
                 intro: "通过图像或者视频片段，快速搜索所属视频",
-                href: "/tech/video/vcc"
+                href: "/video/vcc"
             }, {
                     icon: "video-vcr.png",
                 title: "视频内容审核",
                 intro: "识别视频中的涉黄、涉暴涉恐、政治敏感、广告、自定义黑库等内容",
-                href: "/tech/video/vcr"
+                href: "/video/vcr"
             }]
         }, {
             title: "增强现实",
@@ -85,17 +85,17 @@ var app = new Vue({
                 icon: "nlpc.png",
                 title: "语言处理基础技术",
                 intro: "国际领先的自然语言处理技术，提供丰富强大的语义分析能力",
-                href: "/tech/nlp"
+                href: "/nlp"
             }, {
                     icon: "text-auditing.png",
                 title: "文本审核",
                 intro: "识别过滤垃圾、广告、反动、色情等非法UGC内容",
-                href: "/tech/textcensoring"
+                href: "/textcensoring"
             }, {
                     icon: "unit.png",
                 title: "理解与交互技术UNIT",
                 intro: "搭载业界领先的需求理解、对话控制及底层的自然语言处理能力，快速构建机器人",
-                href: "/tech/unit"
+                href: "/unit"
             }, {
                     icon: "translation.png",
                 title: "百度翻译开放平台",
@@ -146,12 +146,12 @@ var app = new Vue({
                 icon: "cognitive.png",
                 title: "知识理解",
                 intro: "基于知识图谱丰富的数据体系，提供对文本语义中实体、概念等深度理解解析能力",
-                href: "/tech/cognitive"
+                href: "/cognitive"
             }, {
                     icon: "schema.png",
                 title: "知识图谱Schema",
                 intro: "定义知识图谱数据模型及用以描述物理世界的词汇体系，规范结构化数据的表达",
-                href: "/tech/kg/schema"
+                href: "/kg/schema"
             }]
         }, {
             title: "深度学习",
