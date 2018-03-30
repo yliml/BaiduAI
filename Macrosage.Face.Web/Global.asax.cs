@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Macrosage.Weixin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,9 @@ namespace Macrosage.Face.Web
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
+        /// <summary>
+        /// 注册应用凭证
+        /// </summary>
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

@@ -53,6 +53,12 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Senparc.Weixin, Version=4.20.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Senparc.Weixin.4.20.2\lib\net45\Senparc.Weixin.dll</HintPath>
+    </Reference>
+    <Reference Include="Senparc.Weixin.MP, Version=14.10.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Senparc.Weixin.MP.14.10.10\lib\net45\Senparc.Weixin.MP.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -61,6 +67,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -136,6 +143,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaiduAIController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\tech\SpeechController.cs" />
     <Compile Include="Global.asax.cs">
@@ -168,6 +176,7 @@
     <Content Include="Static\js\jweixin-1.2.0.js" />
     <Content Include="Static\js\vue.js" />
     <Content Include="Static\js\weui.min.js" />
+    <Content Include="Static\js\wxshare.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -192,6 +201,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Static\img\" />
+    <Folder Include="Views\Common\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -221,6 +231,10 @@
     <ProjectReference Include="..\Macrosage.Model\Macrosage.Model.csproj">
       <Project>{6b3c8e2e-411e-4cc7-92e5-118f0ce5914c}</Project>
       <Name>Macrosage.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Macrosage.Weixin\Macrosage.Weixin.csproj">
+      <Project>{72e35748-867a-447a-b581-7f82ed6cf92e}</Project>
+      <Name>Macrosage.Weixin</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

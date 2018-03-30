@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Macrosage.BaiduAI", "Macros
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Macrosage.Model", "Macrosage.Model\Macrosage.Model.csproj", "{6B3C8E2E-411E-4CC7-92E5-118F0CE5914C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Macrosage.Weixin", "Macrosage.Weixin\Macrosage.Weixin.csproj", "{72E35748-867A-447A-B581-7F82ED6CF92E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{6B3C8E2E-411E-4CC7-92E5-118F0CE5914C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B3C8E2E-411E-4CC7-92E5-118F0CE5914C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B3C8E2E-411E-4CC7-92E5-118F0CE5914C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72E35748-867A-447A-B581-7F82ED6CF92E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72E35748-867A-447A-B581-7F82ED6CF92E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72E35748-867A-447A-B581-7F82ED6CF92E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72E35748-867A-447A-B581-7F82ED6CF92E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

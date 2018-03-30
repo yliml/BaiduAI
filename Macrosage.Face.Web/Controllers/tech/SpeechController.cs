@@ -1,5 +1,6 @@
 ﻿using Macrosage.BaiduAI;
 using Macrosage.Model.Speech;
+using Macrosage.Weixin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
