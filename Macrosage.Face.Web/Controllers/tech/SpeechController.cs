@@ -42,7 +42,7 @@ namespace Macrosage.Face.Web.Controllers.tech
         [HttpPost]
         public JsonResult Tts(TtsModel res)
         {
-            string filename = System.Web.HttpContext.Current.Server.MapPath("/upload/mp3/");
+            string filename = System.Web.HttpContext.Current.Server.MapPath("/upload/tts/");
             if (!System.IO.Directory.Exists(filename))
                 System.IO.Directory.CreateDirectory(filename);
 
@@ -53,9 +53,9 @@ namespace Macrosage.Face.Web.Controllers.tech
                 System.IO.Directory.CreateDirectory(filename);
 
             string guid = Guid.NewGuid().ToString();
-            filename += $"/tts{guid}.mp3";
+            filename += $"/{guid}.mp3";
             var f = bs.Tts(res, filename);
-            string name = $"/upload/mp3/{date}/tts{guid}.mp3";
+            string name = $"/upload/tts/{date}/{guid}.mp3";
             return Json(new { IsSuccess = f, Result = f ? name : string.Empty });
         }
 
