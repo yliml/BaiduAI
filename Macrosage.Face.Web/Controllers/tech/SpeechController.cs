@@ -51,6 +51,7 @@ namespace Macrosage.Face.Web.Controllers.tech
 
             if (!System.IO.Directory.Exists(filename))
                 System.IO.Directory.CreateDirectory(filename);
+
             string guid = Guid.NewGuid().ToString();
             filename += $"/tts{guid}.mp3";
             var f = bs.Tts(res, filename);

@@ -12,10 +12,10 @@
                 <div class="ai-accordion-arrow"></div>
             </div>
             <div :class="activeAccordionIndex==index?'ai-accordion-content ai-accordion-content-active':'ai-accordion-content'" :style="getAccordionContentStyle(index)">
-                <a :href="item.href" class="ai-tech-item" v-for="item in k.items">
+                <a :href="item.flag==1?item.href:'javascript:;'" class="ai-tech-item" v-for="item in k.items">
                     <img :src="'/Static/img/'+item.icon" class="ai-tech-item-icon">
                     <div class="ai-tech-item-text">
-                        <div class="ai-tech-item-title">{{item.title}}</div>
+                        <div class="ai-tech-item-title">{{item.title}}<font color="red" v-if="item.flag==0">[敬请期待]</font></div>
                         <div class="ai-tech-item-detail">{{item.intro}}</div>
                     </div>
                 </a>
@@ -24,5 +24,5 @@
     </div>
 </div>
 @section PageJS{
-    <script src="~/Static/js/home.js"></script>
+    <script src="~/Static/js/home.js?v=001"></script>
 }
