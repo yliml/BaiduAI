@@ -11,8 +11,5 @@ namespace Macrosage.BaiduAI
         public static readonly string AppID = "11012170";
         public static readonly string APIKey = "emFAWeTjRysTXOgR5oAoU1fj";
         public static readonly string SecretKey = "v5h28YrLvGNepFnSx4TKrZgFfKf92H9O";
-
-        public static readonly string _baseUri = "https://aip.baidubce.com";
-
     }
 }
