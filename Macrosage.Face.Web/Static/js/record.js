@@ -1,6 +1,5 @@
 (function (window) {  
     //兼容  
-    debugger;
     window.URL = window.URL || window.webkitURL;  
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;  
   

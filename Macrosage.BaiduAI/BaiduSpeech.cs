@@ -1,4 +1,5 @@
 ﻿using Macrosage.Model.Speech;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -39,6 +40,26 @@ namespace Macrosage.BaiduAI
                 return true;
             }
             return false;
+        }
+        // 识别本地文件
+        public JObject AsrData(string filesrc)
+        {
+            var _asrClient = new Baidu.Aip.Speech.Asr(ApiConfig.APIKey, ApiConfig.SecretKey);
+            var data = File.ReadAllBytes(filesrc);
+            var result = _asrClient.Recognize(data, "amr", 16000);
+            return result;
+        }
+
+        // 识别URL中的语音文件
+        public void AsrUrl()
+        {
+            var _asrClient = new Baidu.Aip.Speech.Asr(ApiConfig.APIKey, ApiConfig.SecretKey);
+            var result = _asrClient.Recognize(
+                "http://xxx.com/待识别的pcm文件地址",
+                "http://xxx.com/识别结果回调地址",
+                "amr",
+                16000);
+            Console.WriteLine(result);
         }
     }
 }

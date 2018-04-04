@@ -25,6 +25,34 @@ namespace Macrosage.Face.Web.Controllers.tech
         }
 
         /// <summary>
+        /// 语音识别
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult Index(string serverId)
+        {
+            string filename = System.Web.HttpContext.Current.Server.MapPath("/upload/voice/");
+            if (!System.IO.Directory.Exists(filename))
+                System.IO.Directory.CreateDirectory(filename);
+
+            string date = DateTime.Now.ToString("yyyy-MM-dd");
+            filename += date + "/";
+
+            if (!System.IO.Directory.Exists(filename))
+                System.IO.Directory.CreateDirectory(filename);
+
+            string guid = Guid.NewGuid().ToString();
+            filename += $"/{guid}.amr";
+
+            //string name = $"/upload/voice/{date}/{guid}.amr";
+
+            WeixinUtility.GetVoice(serverId, filename);
+
+            var res = bs.AsrData(filename);
+            return Json(res);
+        }
+
+        /// <summary>
         /// 语音合成
         /// </summary>
         /// <returns></returns>
@@ -67,5 +95,6 @@ namespace Macrosage.Face.Web.Controllers.tech
         {
             return View();
         }
+
     }
 }

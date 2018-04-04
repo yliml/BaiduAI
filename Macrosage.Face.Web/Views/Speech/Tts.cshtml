@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LayoutWeUI.cshtml";
 }
 
-<div class="page js_show" id="app" v-cloak >
+<div class="page js_show" id="app" v-cloak>
     <div class="page__hd">
         <h1 class="page__title">语音合成</h1>
         <p class="page__desc">基于业界领先的深度神经网络技术，提供流畅自然的语音合成服务，让您的应用开口说话</p>
@@ -63,14 +63,14 @@
                 </div>
             </div>
         </div>
-        <div class="weui-btn-area">
-            <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips" @@click="SpeechTts">确定</a>
-        </div>
         <div class="weui-btn-area" v-if="filename.length>0">
             <a class="weui-btn weui-btn_default" href="javascript:" @@click="initplay">播放</a>
         </div>
+        <div class="weui-btn-area">
+            <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips" @@click="SpeechTts">确定</a>
+        </div>
     </div>
-    <audio :src="filename" loop id="audio"></audio>
+    <audio :src="filename" id="audio"></audio>
 </div>
 @section PageJS{
     <script type="text/javascript">
@@ -96,6 +96,7 @@
             }
         },
         mounted: function () {
+
         },
         methods: {
             initplay() {
@@ -110,12 +111,14 @@
             SpeechTts() {
                 var that = this;
                 var url = '@Url.Action("tts", "speech")';
+                $.sunloading.show("正在合成");
                 $.ajax({
                     url: url,
                     dataType: "json",
                     type: "post",
                     data: { res:this.tts },
                     success: function (result) {
+                        $.sunloading.close();
                         console.log(result);
                         if (result && result.IsSuccess) {
                             that.filename = result.Result;

@@ -171,9 +171,11 @@
     <Content Include="Static\css\home.css" />
     <Content Include="Static\css\vendor.css" />
     <Content Include="Static\css\weui.css" />
+    <Content Include="Static\js\common.js" />
     <Content Include="Static\js\example.js" />
     <Content Include="Static\js\home.js" />
     <Content Include="Static\js\jweixin-1.2.0.js" />
+    <Content Include="Static\js\record.js" />
     <Content Include="Static\js\vue.js" />
     <Content Include="Static\js\weui.min.js" />
     <Content Include="Static\js\wxshare.js" />

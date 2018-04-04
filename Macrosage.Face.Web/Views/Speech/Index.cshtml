@@ -29,74 +29,105 @@
 </div>
 
 @section PageJS{
-    <script src="~/Static/js/record.js"></script>
+    @*<script src="~/Static/js/record.js"></script>*@
     <script type="text/javascript">
         var app = new Vue({
             el: "#app",
             data: {
                 tex: "",
                 localId: "",
+                serverId: "",
                 flag: 1,
                 recorder:null,
             },
             mounted: function () {
                 var that = this;
-                //wx.onVoiceRecordEnd({
-                //    // 录音时间超过一分钟没有停止的时候会执行 complete 回调
-                //    complete: function (res) {
-                //        that.localId = res.localId;
-                //        that.flag = 1;
-                //    }
-                //});
-                $('#submit').click(function () {
+                wx.onVoiceRecordEnd({
+                    // 录音时间超过一分钟没有停止的时候会执行 complete 回调
+                    complete: function (res) {
+                        that.localId = res.localId;
+                        that.flag = 1;
+                    }
+                });
+                //$('#submit').click(function () {
                     
-                    recorder.upload("", {}, function (state, e) {
-                        debugger
-                        switch (state) {
-                            case 'uploading':
-                                var percentComplete = Math.round(e.loaded * 100 / e.total) + '%';
-                                break;
-                            case 'ok':
-                                debugger;
-                                alert(e.target.responseText);
-                                alert('上传成功');
-                                break;
-                            case 'error':
-                                alert('上传失败');
-                                break;
-                            case 'cancel':
-                                alert('上传被取消');
-                                break;
-                        }
-                    });
-                })
+                //    recorder.upload("", {}, function (state, e) {
+                //        debugger
+                //        switch (state) {
+                //            case 'uploading':
+                //                var percentComplete = Math.round(e.loaded * 100 / e.total) + '%';
+                //                break;
+                //            case 'ok':
+                //                debugger;
+                //                alert(e.target.responseText);
+                //                alert('上传成功');
+                //                break;
+                //            case 'error':
+                //                alert('上传失败');
+                //                break;
+                //            case 'cancel':
+                //                alert('上传被取消');
+                //                break;
+                //        }
+                //    });
+                //})
             },
             methods: {
                 startRecord() {
                     var that = this;
-                    //wx.startRecord({
-                    //    cancel: function () {
-                    //        alert('用户拒绝授权录音');
-                    //        that.flag = 1;
-                    //    }, success: function (res) {
-                    //        that.flag = 0;
-                    //    }
-                    //});
-                    HZRecorder.get(function (rec) {
-                        that.recorder = rec;
-                        that.recorder.start();
-                    })
+                    wx.startRecord({
+                        cancel: function () {
+                            alert('用户拒绝授权录音');
+                            that.flag = 1;
+                        }, success: function (res) {
+                            that.flag = 0;
+                        }
+                    });
+                    //HZRecorder.get(function (rec) {
+                    //    that.recorder = rec;
+                    //    that.recorder.start();
+                    //})
                 },
                 stopRecord() {
                     var that = this;
-                    that.recorder.stop();
-                    //wx.stopRecord({
-                    //    success: function (res) {
-                    //        that.localId = res.localId;
-                    //        that.flag = 1;
-                    //        console.log(that.localId);
-                    //    }
-                    //});
+                    //that.recorder.stop();
+                    wx.stopRecord({
+                        success: function (res) {
+                            that.localId = res.localId;
+                            that.flag = 1;
+                            console.log("localId:"+that.localId);
+                            that.uploadVoice()
+                        }
+                    });
+                },
+                uploadVoice() {
+                    var that = this;
+                    wx.uploadVoice({
+                        localId: that.localId, // 需要上传的音频的本地ID，由stopRecord接口获得
+                        isShowProgressTips: 1, // 默认为1，显示进度提示
+                        success: function (res) {
+                            that.serverId = res.serverId; // 返回音频的服务器端ID
+                            that.recognition();
+                            console.log("serverId:" + that.serverId);
+                        }
+                    });
+                },
+                recognition() {
+                var url = '@Url.Action("index", "speech")';
+                    $.sunloading.show("正在识别");
+                    $.ajax({
+                        url: url,
+                        dataType: "json",
+                        type: "post",
+                        data: { serverId: this.serverId },
+                        success: function (result) {
+                            $.sunloading.close();
+                            console.log("识别结果："+result);
+                        },
+                        error: function (e) {
+                            console.log(e);
+                        }
+                    });
                 }
             }
         });
