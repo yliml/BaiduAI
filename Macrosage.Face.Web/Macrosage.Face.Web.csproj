@@ -145,6 +145,7 @@
     <Compile Include="Controllers\BaiduAIController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\tech\ImageRecognitionController.cs" />
     <Compile Include="Controllers\tech\SpeechController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -198,6 +199,7 @@
     <Content Include="Views\Speech\Index.cshtml" />
     <Content Include="Views\Speech\Tts.cshtml" />
     <Content Include="Views\Shared\_LayoutWeUI.cshtml" />
+    <Content Include="Views\ImageRecognition\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

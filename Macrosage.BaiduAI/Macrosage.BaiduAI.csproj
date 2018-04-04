@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="ApiConfig.cs" />
     <Compile Include="BaiduSpeech.cs" />
+    <Compile Include="ImageClassify.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
