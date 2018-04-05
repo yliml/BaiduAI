@@ -42,7 +42,7 @@ namespace Macrosage.Face.Web.Controllers.tech
                 System.IO.Directory.CreateDirectory(filename);
 
             string guid = Guid.NewGuid().ToString();
-            filename += $"/{guid}.amr";
+            filename += $"/{guid}.pcm";
 
             //string name = $"/upload/voice/{date}/{guid}.amr";
 

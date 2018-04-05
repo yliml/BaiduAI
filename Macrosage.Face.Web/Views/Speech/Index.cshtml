@@ -25,6 +25,9 @@
         <div class="weui-btn-area" v-if="flag!=1">
             <a class="weui-btn weui-btn_default" href="javascript:" @@click="stopRecord">结束</a>
         </div>
+        <div class="weui-btn-area" v-if="localId.length>0">
+            <a class="weui-btn weui-btn_default" href="javascript:" @@click="playVoice">播放</a>
+        </div>
     </div>
 </div>
 
@@ -46,6 +49,7 @@
                     // 录音时间超过一分钟没有停止的时候会执行 complete 回调
                     complete: function (res) {
                         that.localId = res.localId;
+                        that.translateVoice();
                         that.flag = 1;
                     }
                 });
@@ -96,7 +100,8 @@
                             that.localId = res.localId;
                             that.flag = 1;
                             console.log("localId:"+that.localId);
-                            that.uploadVoice()
+                            //that.uploadVoice()
+                            that.translateVoice();
                         }
                     });
                 },
@@ -126,6 +131,22 @@
                         },
                         error: function (e) {
                             console.log(e);
+                        }
+                    });
+                },
+                playVoice() {
+                    wx.playVoice({
+                        localId: this.localId // 需要播放的音频的本地ID，由stopRecord接口获得
+                    });
+                },
+                translateVoice() {
+                    var that = this;
+                    wx.translateVoice({
+                        localId: this.localId, // 需要识别的音频的本地Id，由录音相关接口获得
+                        isShowProgressTips: 1, // 默认为1，显示进度提示
+                        success: function (res) {
+                            that.tex = res.translateResult;
+                            alert(res.translateResult); // 语音识别的结果
                         }
                     });
                 }

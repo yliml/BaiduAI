@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Macrosage.BaiduAI;
 using Macrosage.Face;
 
 namespace Macrosage.Face.Tests
@@ -18,7 +18,8 @@ namespace Macrosage.Face.Tests
             //var file2 = AppDomain.CurrentDomain.BaseDirectory + "zhouxingchi2.jpg";
 
             var fileAdd = AppDomain.CurrentDomain.BaseDirectory + "832119115553560956.jpg";
-
+            string temp = AppDomain.CurrentDomain.BaseDirectory+ "2a39e30f-d63a-4c57-8496-7bfe05be8887.pcm";
+            new BaiduSpeech().AsrData(temp);
             //检测人脸
             //{"result_num":1,"result":[{"location":{"left":33,"top":45,"width":39,"height":30},"face_probability":0.95188879966736,"rotation_angle":-2,"yaw":-12.481206893921,"pitch":-1.5474016666412,"roll":-3.5593690872192}],"log_id":573119120}
             var result = client.FaceCheck(fileAdd);

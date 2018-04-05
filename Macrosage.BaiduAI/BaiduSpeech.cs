@@ -46,7 +46,7 @@ namespace Macrosage.BaiduAI
         {
             var _asrClient = new Baidu.Aip.Speech.Asr(ApiConfig.APIKey, ApiConfig.SecretKey);
             var data = File.ReadAllBytes(filesrc);
-            var result = _asrClient.Recognize(data, "amr", 16000);
+            var result = _asrClient.Recognize(data, "pcm", 16000);
             return result;
         }
 
