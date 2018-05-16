@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LayoutMobile.cshtml";
 }
 
-<div class="ai-section p-t-md p-b-md" id="app">
+<div class="ai-section p-t-md p-b-md" id="app" v-cloak>
     <div class="ai-accordion">
         <div class="ai-accordion-item " v-for="(k,index) in accordionItem">
             <div :class="activeAccordionIndex==index?'ai-accordion-title ai-accordion-title-active':'ai-accordion-title'" @@click="handleCollapse(index)">

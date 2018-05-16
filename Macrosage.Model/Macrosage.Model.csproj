@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImageClassify\ObjectModel.cs" />
+    <Compile Include="ImageClassify\PlantModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Speech\TtsModel.cs" />
   </ItemGroup>

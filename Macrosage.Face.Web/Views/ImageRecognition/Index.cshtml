@@ -1,8 +1,131 @@
 ﻿
 @{
-    ViewBag.Title = "图像识别";
+    if (ViewData["type"].ToString() == "1")
+    {
+        ViewBag.Title = "植物识别";
+    }else if (ViewData["type"].ToString() == "2")
+    {
+        ViewBag.Title = "动物识别";
+    }
+    else if (ViewData["type"].ToString() == "3")
+    {
+        ViewBag.Title = "车型识别";
+    }
     Layout = "~/Views/Shared/_LayoutWeUI.cshtml";
 }
 
-<h2>Index</h2>
+<div class="page js_show" id="app" v-cloak>
+    <div class="page__bd">
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <img v-if="localId.length>0" :src="localId" style="max-width:300px;max-height:300px;" />
+                    <img v-else :src="imgsrc" style="max-width:300px;max-height:300px;" />
+                </div>
+            </div>
+        </div>
+        <div class="weui-cells__title">识别结果</div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <p>名称</p>
+                </div>
+                <div class="weui-cell__ft">置信度</div>
+            </div>
+            <div class="weui-cell" v-for="(k,index) in result">
+                <div class="weui-cell__bd">
+                    <p>{{k.name}}</p>
+                </div>
+                <div class="weui-cell__ft">{{getscore(k.score)}}</div>
+            </div>
+        </div>
+        <div class="weui-btn-area">
+            <a class="weui-btn weui-btn_primary" href="javascript:" @@click="uploader">上传{{title}}图片</a>
+        </div>
+    </div>
+</div>
+@section PageJS{
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#app",
+            data: {
+                imgsrc: "",
+                localId: "",
+                serverId: "",
+                flag: 1,
+                recorder: null,
+                title: "",
+                url: "",
+                result:[]
+            },
+            mounted: function () {
+                var that = this;
+                var type =@ViewData["type"];
+                if (type == 1) {
+                    this.title = "植物";
+                    this.imgsrc = "/Static/img/demoplant.jpg";
+                    this.url = '@Url.Action("PlantDetect", "ImageRecognition")';
+                }
+                else if (type == 2) {
+                    this.title = "动物";
+                    this.imgsrc = "/Static/img/demoanimal.jpg";
+                    this.url = '@Url.Action("AnimalDetect", "ImageRecognition")';
+                }
+                else if (type == 3) {
+                    this.title = "车型";
+                    this.imgsrc = "/Static/img/democar.jpg";
+                    this.url = '@Url.Action("CarDetect", "ImageRecognition")';
+                }
+                this.detect();
+            },
+            methods: {
+                detect() {
+                    var that = this;
+                    $.sunloading.show("正在识别");
+                    $.ajax({
+                        url: this.url,
+                        dataType: "json",
+                        type: "post",
+                        data: { serverId: this.serverId },
+                        success: function (result) {
+                            $.sunloading.close();
+                            console.log("识别结果：" + result);
+                            that.result = result.result;
+                        },
+                        error: function (e) {
+                            console.log(e);
+                        }
+                    });
+                },
+                getscore(score) {
+                    return (score * 100).toFixed(2) + "%";
+                },
+                uploader() {
+                    var that = this;
+                    wx.chooseImage({
+                        count: 1, // 默认9
+                        sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+                        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                        success: function (res) {
+                            console.log(res.localIds);
+                            that.localId = res.localIds[0]; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                            that.uploadImage();
+                        }
+                    });
+                },
+                uploadImage() {
+                    var that = this;
+                    wx.uploadImage({
+                        localId: that.localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+                        isShowProgressTips: 1, // 默认为1，显示进度提示
+                        success: function (res) {
+                            that.serverId = res.serverId; // 返回图片的服务器端ID
+                            that.detect();
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+}
 

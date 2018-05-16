@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Macrosage.Model.ImageClassify;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,17 +14,59 @@ namespace Macrosage.BaiduAI
     /// </summary>
     public class ImageClassify
     {
+
+        private static readonly Baidu.Aip.ImageClassify.ImageClassify client = new Baidu.Aip.ImageClassify.ImageClassify(ApiConfig.APIKey, ApiConfig.SecretKey);
         /// <summary>
         /// 植物识别
         /// </summary>
         /// <param name="filesrc"></param>
-        public JObject PlantDetect(string filesrc)
+        public PlantModel PlantDetect(string filesrc)
         {
-            var client = new Baidu.Aip.ImageClassify.ImageClassify(ApiConfig.APIKey, ApiConfig.SecretKey);
             var image = File.ReadAllBytes(filesrc);
-            // 调用植物识别，可能会抛出网络等异常，请使用try/catch捕获
             var result = client.PlantDetect(image);
-            return result;
+            return GetPlant(result);
+        }
+
+        /// <summary>
+        /// 车辆识别
+        /// </summary>
+        /// <param name="filesrc"></param>
+        /// <returns></returns>
+        public PlantModel CarDetect(string filesrc)
+        {
+            var image = File.ReadAllBytes(filesrc);
+            var result = client.CarDetect(image);
+            return GetPlant(result);
+        }
+        /// <summary>
+        /// 动物识别
+        /// </summary>
+        /// <param name="filesrc"></param>
+        /// <returns></returns>
+        public PlantModel AnimalDetect(string filesrc)
+        {
+            var image = File.ReadAllBytes(filesrc);
+            var result = client.AnimalDetect(image);
+            return GetPlant(result);
+        }
+
+        private PlantModel GetPlant(JObject jObject)
+        {
+            PlantModel model = new PlantModel();
+
+            try
+            {
+                model = jObject.ToObject<PlantModel>();
+            }
+            catch (Exception)
+            {
+               PlantModel1 model1 = jObject.ToObject<PlantModel1>();
+                model.log_id = model1.log_id;
+                model.result = new List<PlantData> {
+                    model1.result
+                };
+            }
+            return model;
         }
     }
 }

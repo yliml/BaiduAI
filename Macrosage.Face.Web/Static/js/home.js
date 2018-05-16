@@ -1,7 +1,7 @@
 var app = new Vue({
     el: "#app",
     data: {
-        activeAccordionIndex: 0,
+        activeAccordionIndex: 1,
         "accordionItem": [
             {
                 "title": "语音技术",
@@ -32,6 +32,27 @@ var app = new Vue({
             {
                 "title": "视觉技术",
                 "items": [
+                    {
+                        "flag": 1,
+                        "icon": "image-recognition.png",
+                        "title": "植物识别",
+                        "intro": "基于深度学习及大规模图像训练，准确识别图片中的物体、置信度等综合信息",
+                        "href": "/ImageRecognition/Index?type=1"
+                    },
+                    {
+                        "flag": 1,
+                        "icon": "image-recognition.png",
+                        "title": "动物识别",
+                        "intro": "基于深度学习及大规模图像训练，准确识别图片中的物体、置信度等综合信息",
+                        "href": "/ImageRecognition/Index?type=2"
+                    },
+                    {
+                        "flag": 1,
+                        "icon": "image-recognition.png",
+                        "title": "车型识别",
+                        "intro": "基于深度学习及大规模图像训练，准确识别图片中的物体、置信度等综合信息",
+                        "href": "/ImageRecognition/Index?type=3"
+                    },
                     {
                         "flag": 0,
                         "icon": "image-word.png",
