@@ -59,4 +59,4 @@
             init_ant_js();
         }
     });
-})(jQuery, navigator;
+})(jQuery, navigator);

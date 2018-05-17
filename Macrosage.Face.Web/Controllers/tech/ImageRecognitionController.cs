@@ -36,7 +36,7 @@ namespace Macrosage.Face.Web.Controllers.tech
             string filename = System.Web.HttpContext.Current.Server.MapPath("/Static/img/demoplant.jpg");
             if (!string.IsNullOrWhiteSpace(serverId))
             {
-                filename = Getfilename(serverId);
+                filename = GetFileName(serverId);
             }
             var data = imageClassify.PlantDetect(filename);
             return Json(data, JsonRequestBehavior.AllowGet);
@@ -47,7 +47,7 @@ namespace Macrosage.Face.Web.Controllers.tech
             string filename = System.Web.HttpContext.Current.Server.MapPath("/Static/img/demoanimal.jpg");
             if (!string.IsNullOrWhiteSpace(serverId))
             {
-                filename = Getfilename(serverId);
+                filename = GetFileName(serverId);
             }
             var data = imageClassify.AnimalDetect(filename);
             return Json(data, JsonRequestBehavior.AllowGet);
@@ -58,13 +58,18 @@ namespace Macrosage.Face.Web.Controllers.tech
             string filename = System.Web.HttpContext.Current.Server.MapPath("/Static/img/democar.jpg");
             if (!string.IsNullOrWhiteSpace(serverId))
             {
-                filename = Getfilename(serverId);
+                filename = GetFileName(serverId);
             }
             var data = imageClassify.CarDetect(filename);
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
-        private string Getfilename(string serverId)
+        /// <summary>
+        /// 下载微信图片
+        /// </summary>
+        /// <param name="serverId">微信返回的图片的服务器端ID</param>
+        /// <returns></returns>
+        private string GetFileName(string serverId)
         {
             string filename = System.Web.HttpContext.Current.Server.MapPath("/upload/img/");
             if (!System.IO.Directory.Exists(filename))
